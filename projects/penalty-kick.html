@@ -1,1 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Penalty Kick Project • Jacob Edmonds</title>
+  <meta name="description" content="Penalty Kick Project (STOR 538) by Jacob Edmonds. Run-up steps, shot placement heatmaps, and outcome analysis.">
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Penalty Kick Project (STOR 538)</h1>
+      <p class="tagline">Run-up step routines • Shot placement • Outcomes • Reproducible RMarkdown</p>
+      <div class="links">
+        <a href="../index.html">← Back to Home</a>
+        <a href="https://github.com/jacobedmonds/penalty-kick-project" target="_blank">GitHub Repo</a>
+        <a href="https://raw.githubusercontent.com/jacobedmonds/penalty-kick-project/main/paper/STOR538_Championship.pdf" target="_blank">Research PDF</a>
+        <a href="https://github.com/jacobedmonds/penalty-kick-project/blob/main/code/Penalty_Kick_Project.Rmd" target="_blank">RMarkdown</a>
+        <a href="https://github.com/jacobedmonds/penalty-kick-project/blob/main/data/Champ_Data.csv" target="_blank">Dataset</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Overview</h2>
+      <p>
+        This project analyzes 300 penalty kicks to test whether the number of run-up steps (and step-routine
+        category) is associated with differences in shot placement or outcomes (goal vs not goal).
+        I built a reproducible R workflow that cleans the dataset, generates goal-zone heatmaps, and runs
+        nonparametric statistical tests.
+      </p>
+    </section>
+
+    <section>
+      <h2>Key Idea: Step Routine Categories</h2>
+      <p>
+        Step routines are defined using the empirical distribution of steps:
+      </p>
+      <ul>
+        <li><strong>Shortened:</strong> fewer than 4 steps</li>
+        <li><strong>Normal:</strong> 4–8 steps (25th–75th percentile range)</li>
+        <li><strong>Lengthened:</strong> greater than 8 steps</li>
+      </ul>
+      <p class="muted">
+        Note: In the ball-placement heatmaps, zone percentages are computed relative to all attempts within each routine,
+        including off-target attempts (pos=7). Off-target rates are reported in captions.
+      </p>
+    </section>
+
+    <section>
+      <h2>Results & Visualizations</h2>
+
+      <div class="card">
+        <h3>Run-up steps by outcome</h3>
+        <p>
+          Boxplots compare step counts for goals vs not-goals (saved + missed).
+        </p>
+        <p class="muted">
+          (Optional) Add an image here: export your plot to PNG and place it in <code>/assets/</code>.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Ball placement heatmap by step routine</h3>
+        <p>
+          Goal-zone heatmaps summarize shot placement for Shortened, Normal, and Lengthened routines. Each tile shows
+          percent frequency and count for that zone.
+        </p>
+        <p class="muted">
+          (Optional) Add an image here: export your heatmap to PNG and place it in <code>/assets/</code>.
+        </p>
+      </div>
+
+    </section>
+
+    <section>
+      <h2>Methods</h2>
+      <ul>
+        <li>Cleaning + standardization using <code>tidyverse</code></li>
+        <li>Spatial heatmaps using goal-zone mapping (1–6 in-goal, 7 off-target)</li>
+        <li>Shapiro–Wilk normality checks; Wilcoxon rank-sum for step differences</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Reproduce the Analysis</h2>
+      <ol>
+        <li>Clone the repo: <code>git clone https://github.com/jacobedmonds/penalty-kick-project</code></li>
+        <li>Open <code>code/Penalty_Kick_Project.Rmd</code> in RStudio</li>
+        <li>Click <strong>Knit</strong></li>
+      </ol>
+    </section>
+
+    <footer class="footer">
+      <p class="muted">© 2026 Jacob Edmonds</p>
+    </footer>
+  </main>
+</body>
+</html>
 
