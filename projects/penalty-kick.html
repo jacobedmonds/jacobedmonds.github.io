@@ -3,73 +3,96 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Penalty Kick Project • Jacob Edmonds</title>
   <meta name="description" content="Penalty Kick Project by Jacob Edmonds. Run-up steps, shot placement heatmaps, and outcome analysis.">
+
   <link rel="stylesheet" href="../style.css" />
 </head>
+
 <body>
   <main class="container">
     <header class="hero">
       <h1>Penalty Kick Project</h1>
       <p class="tagline">Run-up step routines • Shot placement • Outcomes • Reproducible RMarkdown</p>
+
       <div class="links">
         <a href="../index.html">← Back to Home</a>
-        <a href="https://github.com/jacobedmonds/penalty-kick-project" target="_blank">GitHub Repo</a>
-        <a href="https://raw.githubusercontent.com/jacobedmonds/penalty-kick-project/main/paper/penalty_kick_project_paper.pdf" target="_blank">Research PDF</a>
-        <a href="https://github.com/jacobedmonds/penalty-kick-project/blob/main/code/Penalty_Kick_Project.Rmd" target="_blank">RMarkdown</a>
-        <a href="https://github.com/jacobedmonds/penalty-kick-project/blob/main/data/Champ_Data.csv" target="_blank">Dataset</a>
+        <a href="https://github.com/jacobedmonds/penalty-kick-project" target="_blank" rel="noopener">GitHub Repo</a>
+        <a href="https://raw.githubusercontent.com/jacobedmonds/penalty-kick-project/main/paper/penalty_kick_project_paper.pdf" target="_blank" rel="noopener">Research PDF</a>
+        <a href="https://github.com/jacobedmonds/penalty-kick-project/blob/main/code/Penalty_Kick_Project.Rmd" target="_blank" rel="noopener">RMarkdown</a>
+        <a href="https://github.com/jacobedmonds/penalty-kick-project/blob/main/data/Champ_Data.csv" target="_blank" rel="noopener">Dataset</a>
       </div>
     </header>
 
     <section>
       <h2>Overview</h2>
       <p>
-        This project analyzes 300 penalty kicks to test whether the number of run-up steps (and step-routine
-        category) is associated with differences in shot placement or outcomes (goal vs not goal).
-        I built a reproducible R workflow that cleans the dataset, generates goal-zone heatmaps, and runs
-        nonparametric statistical tests.
+        Team-based analysis investigating whether a kicker’s run-up step count is associated with
+        penalty kick success or shot placement. Built a custom dataset by combining public match data
+        with video-based coding of each penalty event.
       </p>
     </section>
 
     <section>
       <h2>Key Idea: Step Routine Categories</h2>
-      <p>
-        Step routines are defined using the empirical distribution of steps:
-      </p>
+      <p>Step routines are defined using the empirical distribution of steps:</p>
+
       <ul>
         <li><strong>Shortened:</strong> fewer than 4 steps</li>
         <li><strong>Normal:</strong> 4–8 steps (25th–75th percentile range)</li>
         <li><strong>Lengthened:</strong> greater than 8 steps</li>
       </ul>
+
       <p class="muted">
         Note: In the ball-placement heatmaps, zone percentages are computed relative to all attempts within each routine,
         including off-target attempts (pos=7). Off-target rates are reported in captions.
       </p>
     </section>
 
-  <section>
-  <h2>Results & Visualizations</h2>
+    <section>
+      <h2>Results &amp; Visualizations</h2>
 
-  <div class="card">
-    <h3>Run-up steps by outcome</h3>
-    <p>
-      Boxplots compare step counts for goals vs not-goals (saved + missed).
-    </p>
-    <img src="../assets/Run-up_by_Result.png" alt="Run-up steps by outcome" class="project-img" />
-    <p class="figure-caption">Run-up steps distribution for Goal vs Not Goal.</p>
-  </div>
+      <div class="card">
+        <h3>Run-up steps by outcome</h3>
+        <p>Boxplots compare step counts for goals vs not-goals (saved + missed).</p>
 
-  <div class="card">
-    <h3>Ball placement heatmap by step routine</h3>
-    <p>
-      Goal-zone heatmaps summarize shot placement for Shortened, Normal, and Lengthened routines. Each tile shows
-      percent frequency and count for that zone.
-    </p>
-    <img src="../assets/Ball_Position_by_Step_Routine.png" alt="Ball placement by step routine" class="project-img" />
-    <p class="figure-caption">Ball placement heatmap by step routine (Shortened / Normal / Lengthened).</p>
-  </div>
-</section>
+        <img
+          src="../assets/Run-up_by_Result.png"
+          alt="Run-up steps by outcome"
+          class="project-img"
+        />
 
+        <p class="figure-caption">Run-up steps distribution for Goal vs Not Goal.</p>
+      </div>
+
+      <div class="card">
+        <h3>Ball placement heatmap by step routine</h3>
+        <p>
+          Goal-zone heatmaps summarize shot placement for Shortened, Normal, and Lengthened routines. Each tile shows
+          percent frequency and count for that zone.
+        </p>
+
+        <img
+          src="../assets/Ball_Position_by_Step_Routine.png"
+          alt="Ball placement by step routine"
+          class="project-img"
+        />
+
+        <p class="figure-caption">
+          Ball placement heatmap by step routine (Shortened / Normal / Lengthened).
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Findings</h2>
+      <ul>
+        <li>Run-up step count was not statistically associated with scoring success in our sample</li>
+        <li>Step routine categories did not show meaningful differences in shot placement patterns</li>
+        <li>Practical implication: run-up length appears more stylistic than a reliable performance lever</li>
+      </ul>
+    </section>
 
     <section>
       <h2>Methods</h2>
@@ -77,6 +100,17 @@
         <li>Cleaning + standardization using <code>tidyverse</code></li>
         <li>Spatial heatmaps using goal-zone mapping (1–6 in-goal, 7 off-target)</li>
         <li>Shapiro–Wilk normality checks; Wilcoxon rank-sum for step differences</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>My Contributions</h2>
+      <ul>
+        <li>Collected and coded penalty kick observations from public sources and match video</li>
+        <li>Led exploratory data analysis to identify patterns and refine testable questions</li>
+        <li>Ran Shapiro–Wilk normality checks to validate distribution assumptions before inference</li>
+        <li>Applied Wilcoxon rank-sum tests to compare step counts between outcome groups</li>
+        <li>Contributed interpretation and coaching-oriented takeaways to help translate results into actionable insight</li>
       </ul>
     </section>
 
