@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Billionaires EDA – Jacob Edmonds</title>
+  <meta name="description" content="Exploratory data analysis of billionaire industries and wealth by education enrollment levels.">
+  <meta name="author" content="Jacob Edmonds">
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container">
+
+    <header class="hero">
+      <h1>Billionaires EDA: Education & Industry</h1>
+      <p class="tagline">
+        Exploratory data analysis using global billionaire data to study industry concentration
+        and median net worth across education enrollment levels.
+      </p>
+
+      <div class="links">
+        <a href="../index.html">← Back to Home</a>
+        <a href="billionaires_project.pdf">PDF Report</a>
+        <a href="billionaires_cleaning.html">Data Cleaning</a>
+        <a href="https://github.com/jacobedmonds/billionaires-eda" target="_blank">GitHub Repo</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Project Overview</h2>
+      <p>
+        This project analyzes how billionaire industry representation and median net worth differ
+        between countries with high and low gross primary enrollment rates.
+        Countries were split into high- and low-enrollment groups using the global median enrollment rate.
+      </p>
+    </section>
+
+    <section>
+      <h2>Research Questions</h2>
+      <ul>
+        <li>Do billionaire industries differ between countries with high vs low primary enrollment?</li>
+        <li>Does median net worth vary by industry across enrollment groups?</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Data & Methodology</h2>
+      <ul>
+        <li>Global billionaire dataset with industry classification and net worth</li>
+        <li>Country-level gross primary enrollment rates used as education proxy</li>
+        <li>Exploratory comparisons using grouped summaries and faceted visualizations</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Key Findings</h2>
+      <ul>
+        <li>
+          Countries with higher primary enrollment rates show more diversified billionaire industries,
+          particularly in manufacturing, healthcare, and fashion & retail.
+        </li>
+        <li>
+          Countries with lower enrollment rates tend to have higher median net worth in several industries,
+          including finance, logistics, and gambling.
+        </li>
+        <li>
+          The relationship between education and wealth accumulation varies substantially by industry.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Data Cleaning & Reproducibility</h2>
+      <p>
+        A separate cleaning pipeline documents how raw billionaire and economic data were merged,
+        filtered, and standardized prior to analysis.
+      </p>
+      <ul>
+        <li><a href="billionaires_cleaning.html">View full data cleaning documentation →</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tools Used</h2>
+      <p>
+        R, dplyr, ggplot2, RMarkdown, Git, GitHub
+      </p>
+    </section>
+
+    <footer class="footer">
+      <p class="muted">© 2026 Jacob Edmonds</p>
+    </footer>
+
+  </main>
+</body>
+</html>
