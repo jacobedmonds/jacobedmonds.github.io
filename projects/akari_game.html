@@ -1,0 +1,94 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Akari Puzzle Game – Jacob Edmonds</title>
+  <meta name="description" content="JavaFX implementation of the Akari logic puzzle using MVC architecture and object-oriented design.">
+  <meta name="author" content="Jacob Edmonds">
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="container">
+
+    <header class="hero">
+      <h1>Akari Puzzle Game</h1>
+      <p class="tagline">
+        JavaFX desktop implementation of the Akari / Light Up logic puzzle with interactive lamp placement,
+        puzzle validation, and multi-puzzle navigation using MVC architecture.
+      </p>
+
+      <div class="links">
+        <a href="../index.html">← Back to Home</a>
+        <a href="https://github.com/jacobedmonds/akari-javafx" target="_blank" rel="noopener">GitHub Repo</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Project Overview</h2>
+      <p>
+        This project is an interactive desktop version of the Akari logic puzzle, also known as Light Up.
+        Players place lamps on a grid to illuminate every corridor cell while satisfying numbered wall clues
+        and preventing lamps from shining directly on one another.
+      </p>
+    </section>
+
+    <section>
+      <h2>Core Features</h2>
+      <ul>
+        <li>Interactive JavaFX puzzle board with clickable cells</li>
+        <li>Lamp placement and removal during gameplay</li>
+        <li>Automatic illumination logic across rows and columns</li>
+        <li>Validation for clue satisfaction and illegal lamp conflicts</li>
+        <li>Multiple built-in puzzles with Previous, Next, Random, and Reset controls</li>
+        <li>Puzzle completion detection with solved-state feedback</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Architecture</h2>
+      <p>
+        The application follows a Model-View-Controller design. The model manages puzzle state and game-rule
+        validation, the view renders the JavaFX interface, and the controller handles user actions such as
+        puzzle navigation and board interaction.
+      </p>
+    </section>
+
+    <section>
+      <h2>Implementation Details</h2>
+      <ul>
+        <li>Used object-oriented Java interfaces and implementations to separate puzzle, model, controller, and view logic</li>
+        <li>Implemented observer-based updates so the UI responds to model changes</li>
+        <li>Represented puzzles as two-dimensional integer arrays mapped to clue, wall, and corridor cell types</li>
+        <li>Checked puzzle completion by verifying illuminated corridors, satisfied clues, and legal lamp placement</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What I Learned</h2>
+      <ul>
+        <li>Building a desktop application with JavaFX</li>
+        <li>Applying MVC architecture in a larger Java project</li>
+        <li>Using the Observer Pattern to synchronize UI and application state</li>
+        <li>Writing rule-validation logic for a grid-based puzzle game</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tools Used</h2>
+      <p>
+        Java, JavaFX, MVC Architecture, Observer Pattern, Git, GitHub
+      </p>
+    </section>
+
+    <footer class="footer">
+      <p class="muted">© 2026 Jacob Edmonds</p>
+    </footer>
+
+  </main>
+</body>
+</html>
+```
