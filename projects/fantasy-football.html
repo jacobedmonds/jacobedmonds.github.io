@@ -1,1 +1,300 @@
+from pathlib import Path
+
+html = """<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Fantasy Football Draft Assistant – Jacob Edmonds</title>
+  <meta
+    name="description"
+    content="Fantasy Football Draft Assistant by Jacob Edmonds. Python analytics engine, Java interface, multi-source player data integration, VOR, positional scarcity, and ADP analysis."
+  >
+  <meta name="author" content="Jacob Edmonds">
+
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <main class="container">
+
+    <header class="hero">
+      <h1>Fantasy Football Draft Assistant</h1>
+
+      <p class="tagline">
+        Python • pandas • NumPy • FastAPI • Java • Sports Analytics
+      </p>
+
+      <div class="links">
+        <a href="../index.html">← Back to Home</a>
+        <a
+          href="https://github.com/jacobedmonds/fantasy_football_manager"
+          target="_blank"
+          rel="noopener"
+        >
+          GitHub Repo
+        </a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Project Overview</h2>
+      <p>
+        I built a fantasy football draft assistant that combines a Python analytics
+        engine with a Java application to support real-time draft decisions. The
+        project integrates player metadata, average draft position (ADP), and
+        projection data from multiple sources, then uses those inputs to identify
+        player value, positional scarcity, and draft opportunities.
+      </p>
+
+      <p>
+        The goal was to move beyond a static ranking sheet and build a repeatable
+        data pipeline and decision-support tool that can update recommendations as
+        players come off the draft board.
+      </p>
+    </section>
+
+    <section>
+      <h2>Problem</h2>
+      <p>
+        Fantasy football rankings provide a useful starting point, but a draft is
+        dynamic. The value of a player depends not only on projected production,
+        but also on positional depth, replacement-level alternatives, current ADP,
+        and which players have already been selected.
+      </p>
+
+      <p>
+        I designed the project around a practical question:
+        <strong>
+          How can multiple fantasy football data sources be combined into a system
+          that recommends the best available player as a draft develops?
+        </strong>
+      </p>
+    </section>
+
+    <section>
+      <h2>Data Pipeline</h2>
+
+      <div class="card">
+        <h3>Multi-source player dataset</h3>
+        <p>
+          The analytics pipeline combines player information from multiple fantasy
+          football sources and standardizes those records into a single master
+          dataset.
+        </p>
+
+        <ul>
+          <li>
+            Cleaned <strong>602 ADP records</strong> from FantasyPros
+          </li>
+          <li>
+            Integrated Sleeper player metadata including team, position, bye week,
+            and player identifiers
+          </li>
+          <li>
+            Matched <strong>524 player records</strong> across the ADP and Sleeper
+            datasets
+          </li>
+          <li>
+            Collected <strong>385 projection records</strong> across QB, RB, WR,
+            and TE from CBS
+          </li>
+          <li>
+            Standardized player names, teams, positions, and numeric fields before
+            joining datasets
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Player Matching</h2>
+      <p>
+        One of the largest data-engineering challenges was matching players across
+        independent sources that did not always use identical names or metadata.
+        Instead of relying on one exact join key, I used a staged matching strategy.
+      </p>
+
+      <ul>
+        <li>
+          Primary match using <code>name + team + position</code>
+        </li>
+        <li>
+          Fallback match using <code>name + position</code>
+        </li>
+        <li>
+          Unique-name matching when a player could be identified unambiguously
+        </li>
+        <li>
+          Unmatched records retained for review rather than silently discarded
+        </li>
+      </ul>
+
+      <p>
+        This approach improved coverage while keeping the merge process
+        interpretable and reproducible.
+      </p>
+    </section>
+
+    <section>
+      <h2>Analytics</h2>
+
+      <div class="card">
+        <h3>Value Over Replacement</h3>
+        <p>
+          Player value is evaluated relative to replacement-level options at the
+          same position rather than using raw projected points alone. This makes it
+          possible to compare players across positions on a more meaningful basis.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Positional Scarcity</h3>
+        <p>
+          The system accounts for the depth remaining at each position. As stronger
+          players at a position leave the board, the cost of waiting can increase,
+          changing the relative value of the remaining options.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>ADP Analysis</h3>
+        <p>
+          Average draft position is used as a market benchmark. Comparing projected
+          value with ADP helps identify players who may be available later than
+          their analytical value suggests.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Real-time Recommendations</h3>
+        <p>
+          Draft-board state is incorporated into the recommendation process so the
+          available-player pool changes as selections are made.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Application Architecture</h2>
+      <p>
+        The project separates the analytics layer from the user-facing application.
+        Python handles data preparation and player evaluation, while Java provides
+        the draft interface.
+      </p>
+
+      <pre><code>Raw fantasy data
+      ↓
+Python cleaning + matching pipeline
+      ↓
+Master player dataset
+      ↓
+Analytics engine
+(VOR • scarcity • ADP • projections)
+      ↓
+FastAPI
+      ↓
+Java draft application
+      ↓
+Draft board + recommendations</code></pre>
+    </section>
+
+    <section>
+      <h2>Technical Challenges</h2>
+      <ul>
+        <li>
+          Reconciling inconsistent player names and identifiers across independent
+          data sources
+        </li>
+        <li>
+          Designing fallback matching logic without introducing incorrect joins
+        </li>
+        <li>
+          Converting scraped projection tables into consistent position-level
+          schemas
+        </li>
+        <li>
+          Handling missing projections and unmatched players explicitly
+        </li>
+        <li>
+          Separating data processing, analytics, API, and application logic into
+          reusable components
+        </li>
+        <li>
+          Translating fantasy football strategy into quantitative metrics that can
+          update during a live draft
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What This Project Demonstrates</h2>
+      <ul>
+        <li>Python-based data cleaning and transformation with pandas</li>
+        <li>Multi-source dataset integration and entity matching</li>
+        <li>Feature engineering for sports and fantasy analytics</li>
+        <li>Value-based player evaluation rather than simple ranking</li>
+        <li>API-based communication between Python and Java components</li>
+        <li>Reproducible data workflows using Git and GitHub</li>
+        <li>Turning analytical results into a practical decision-support tool</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Current Status &amp; Next Steps</h2>
+      <p>
+        The project has a working data and analytics foundation, including player
+        ingestion, cleaning, cross-source matching, projection integration, draft
+        board management, and recommendation logic.
+      </p>
+
+      <p>Planned improvements include:</p>
+
+      <ul>
+        <li>Expand projection coverage and improve automated player reconciliation</li>
+        <li>Add clearer recommendation explanations and player-comparison views</li>
+        <li>Improve the Java draft interface and live draft workflow</li>
+        <li>Add visualizations for positional tiers, VOR, and ADP value</li>
+        <li>Make yearly data refreshes easier and more automated</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tools Used</h2>
+      <p>
+        Python, pandas, NumPy, FastAPI, Java, JSON, CSV, Git, GitHub
+      </p>
+    </section>
+
+    <section>
+      <h2>Repository</h2>
+      <p>
+        Source code, data-processing scripts, and application components are
+        available on GitHub.
+      </p>
+
+      <a
+        class="btn"
+        href="https://github.com/jacobedmonds/fantasy_football_manager"
+        target="_blank"
+        rel="noopener"
+      >
+        View GitHub Repository →
+      </a>
+    </section>
+
+    <footer class="footer">
+      <p class="muted">© 2026 Jacob Edmonds</p>
+    </footer>
+
+  </main>
+</body>
+</html>
+"""
+
+path = Path("/mnt/data/fantasy-football.html")
+path.write_text(html, encoding="utf-8")
+
+print(f"Created {path}")
 
